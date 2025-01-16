@@ -1095,16 +1095,15 @@ public class SardineImpl implements Sardine
 		if (httpMajorVersion != null){
 			request.setVersion(new ProtocolVersion("HTTP", httpMajorVersion, 0));
 		}
-		HttpContext requestLocalContext = new HttpClientContext(context);
 		try
 		{
 			if (responseHandler != null)
 			{
-				return this.client.execute(request, requestLocalContext, responseHandler);
+				return this.client.execute(request, context, responseHandler);
 			}
 			else
 			{
-				return (T) this.client.execute(request, requestLocalContext);
+				return (T) this.client.execute(request, context);
 			}
 		}
 		catch (HttpResponseException e)
@@ -1116,10 +1115,6 @@ public class SardineImpl implements Sardine
 		{
 			request.abort();
 			throw e;
-		}
-		finally
-		{
-			context.setAttribute(HttpClientContext.USER_TOKEN, requestLocalContext.getAttribute(HttpClientContext.USER_TOKEN));
 		}
 	}
 
