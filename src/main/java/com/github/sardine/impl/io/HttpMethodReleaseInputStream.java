@@ -23,7 +23,6 @@ import java.util.logging.Logger;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.HttpConnection;
-import org.apache.hc.core5.http.HttpResponse;
 
 
 public class HttpMethodReleaseInputStream extends ByteCountInputStream

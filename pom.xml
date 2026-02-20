@@ -3,7 +3,7 @@
     <groupId>com.github.lookfirst</groupId>
     <artifactId>sardine</artifactId>
     <packaging>jar</packaging>
-    <version>5.14-FOC1</version>
+    <version>5.14-FOC2-SNAPSHOT</version>
     <description>An easy to use WebDAV client for Java</description>
     <name>Sardine WebDAV client</name>
     <url>https://github.com/lookfirst/sardine</url>
@@ -293,8 +293,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <!-- Skip integration tests by default with failsafe plugin -->
         <skipITs>false</skipITs>
-        <httpclient.version>5.4.1</httpclient.version>
-        <httpcore.version>5.3.2</httpcore.version>
+        <httpclient.version>5.6</httpclient.version>
         <slf4j.version>2.0.17</slf4j.version>
     </properties>
     <dependencyManagement>
@@ -316,16 +315,6 @@
             <groupId>org.apache.httpcomponents.client5</groupId>
             <artifactId>httpclient5</artifactId>
             <version>${httpclient.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents.core5</groupId>
-            <artifactId>httpcore5</artifactId>
-            <version>${httpcore.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents.core5</groupId>
-            <artifactId>httpcore5-h2</artifactId>
-            <version>${httpcore.version}</version>
         </dependency>
         <!-- Sardine has a runtime dependency to JAXB. As this not part of JDK 11 anymore,
              we need a dependency on JAXB-->

@@ -48,7 +48,7 @@ public class AuthenticationTest
 	@Test
 	public void testBasicAuth() throws Exception
 	{
-		Sardine sardine = SardineFactory.begin("jenkins", "jenkins");
+		Sardine sardine = SardineFactory.begin("jenkins", "jenkins".toCharArray());
 		try
 		{
 			URI url = URI.create(webDavTestContainer.getTestBasicAuthFolderUrl());
@@ -65,7 +65,7 @@ public class AuthenticationTest
 	@Test
 	public void testDigestAuth() throws Exception
 	{
-		Sardine sardine = SardineFactory.begin("jenkins", "jenkins");
+		Sardine sardine = SardineFactory.begin("jenkins", "jenkins".toCharArray());
 		try
 		{
 			URI url = URI.create(webDavTestContainer.getTestBasicAuthFolderUrl());
@@ -82,7 +82,7 @@ public class AuthenticationTest
 	@Test
 	public void testDigestAuthWithBasicPreemptiveAuthenticationEnabled() throws Exception
 	{
-		Sardine sardine = SardineFactory.begin("jenkins", "jenkins");
+		Sardine sardine = SardineFactory.begin("jenkins", "jenkins".toCharArray());
 		URI url = URI.create(webDavTestContainer.getTestBasicAuthFolderUrl());
 		sardine.enablePreemptiveAuthentication(url.getHost());
 		assertNotNull(sardine.list(url.toString()));

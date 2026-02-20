@@ -3,6 +3,7 @@ package com.github.sardine.impl.methods;
 import java.net.URI;
 
 import org.apache.hc.client5.http.classic.methods.HttpUriRequestBase;
+import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpHeaders;
 
 
@@ -21,7 +22,7 @@ public class HttpReport extends HttpUriRequestBase {
     public HttpReport(URI uri) {
         super(METHOD_NAME, uri);
         this.setDepth("0");
-        this.setHeader(HttpHeaders.CONTENT_TYPE, "text/xml; charset=utf-8");
+        this.setHeader(HttpHeaders.CONTENT_TYPE, ContentType.TEXT_XML);
     }
 
     @Override

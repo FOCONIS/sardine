@@ -38,6 +38,7 @@ public class HttpMkCol extends HttpUriRequestBase
 		super(METHOD_NAME, uri);
 	}
 
+	@Override
 	public String getMethod()
 	{
 		return METHOD_NAME;

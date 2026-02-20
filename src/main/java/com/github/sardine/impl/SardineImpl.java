@@ -33,8 +33,6 @@ import org.apache.hc.client5.http.SchemePortResolver;
 import org.apache.hc.client5.http.auth.*;
 import org.apache.hc.client5.http.classic.methods.*;
 import org.apache.hc.client5.http.config.RequestConfig;
-import org.apache.hc.client5.http.cookie.CookieSpecFactory;
-import org.apache.hc.client5.http.entity.GzipDecompressingEntity;
 import org.apache.hc.client5.http.impl.DefaultRedirectStrategy;
 import org.apache.hc.client5.http.impl.DefaultSchemePortResolver;
 import org.apache.hc.client5.http.impl.auth.BasicAuthCache;
@@ -54,7 +52,6 @@ import org.apache.hc.client5.http.socket.ConnectionSocketFactory;
 import org.apache.hc.client5.http.socket.PlainConnectionSocketFactory;
 import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
 import org.apache.hc.core5.http.*;
-import org.apache.hc.core5.http.config.Lookup;
 import org.apache.hc.core5.http.config.Registry;
 import org.apache.hc.core5.http.config.RegistryBuilder;
 import org.apache.hc.core5.http.io.HttpClientResponseHandler;
@@ -63,8 +60,6 @@ import org.apache.hc.core5.http.io.entity.FileEntity;
 import org.apache.hc.core5.http.io.entity.InputStreamEntity;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.hc.core5.http.message.BasicHeader;
-import org.apache.hc.core5.http.protocol.BasicHttpContext;
-import org.apache.hc.core5.http.protocol.HttpContext;
 import org.apache.hc.core5.util.VersionInfo;
 import org.w3c.dom.Element;
 
@@ -253,23 +248,7 @@ public class SardineImpl implements Sardine
 	@Override
 	public void enableCompression()
 	{
-		// Adding content encoding (gzip) support
-		this.builder.addRequestInterceptorLast((httpRequest, entityDetails, context) -> {
-			httpRequest.addHeader("Accept-Encoding", "gzip");
-		});
-
-		this.builder.addResponseInterceptorLast((httpResponse, entityDetails, context) -> {
-			ClassicHttpResponse classicHttpResponse = (ClassicHttpResponse) httpResponse;
-			HttpEntity entity = classicHttpResponse.getEntity();
-
-			if (httpResponse.containsHeader("Content-Encoding") &&
-					"gzip".equalsIgnoreCase(httpResponse.getHeader("Content-Encoding").getValue())) {
-				// Decompressing the gzip content
-				ClassicHttpResponse.class.cast(httpResponse).setEntity(
-						new GzipDecompressingEntity(entity));
-			}
-		});
-
+		// content compression is enabled by default in HttpClient
 		this.client = this.builder.build();
 	}
 
@@ -608,7 +587,7 @@ public class SardineImpl implements Sardine
 	public String refreshLock(String url, String token, String file) throws IOException
 	{
 		HttpLock entity = new HttpLock(url);
-		entity.setHeader("If", "<" + file + "> (<" + token + ">)");
+		entity.setHeader(HttpHeaders.IF, "<" + file + "> (<" + token + ">)");
 		return this.execute(entity, new LockResponseHandler());
 	}
 
