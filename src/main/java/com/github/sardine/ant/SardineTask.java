@@ -105,7 +105,7 @@ public class SardineTask extends Task
 			}
 
 			if (ignoreCookies) {
-				sardine.ignoreCookies();
+				//sardine.ignoreCookies();
 			}
 
 			if (preemptiveAuthenticationHost != null && !preemptiveAuthenticationHost.isEmpty()) {

@@ -568,30 +568,6 @@ public interface Sardine
 	void enableHttp2();
 
 	/**
-	 * <p>
-	 * Enables HTTP GZIP compression. If enabled, requests originating from Sardine
-	 * will include "gzip" as an "Accept-Encoding" header.
-	 * </p>
-	 * If the server also supports gzip compression, it should serve the
-	 * contents in compressed gzip format and include "gzip" as the
-	 * Content-Encoding. If the content encoding is present, Sardine will
-	 * automatically decompress the files upon reception.
-	 */
-	void enableCompression();
-
-	/**
-	 * Disables support for HTTP compression.
-	 *
-	 * @see Sardine#enableCompression()
-	 */
-	void disableCompression();
-
-	/**
-	 * Ignores cookies.
-	 */
-	void ignoreCookies();
-
-	/**
 	 * Send a <code>Basic</code> authentication header with each request even before 401 is returned.
 	 * Uses default ports: 80 for http and 443 for https
 	 *

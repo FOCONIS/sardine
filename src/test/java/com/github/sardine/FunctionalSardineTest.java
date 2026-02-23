@@ -85,7 +85,6 @@ public class FunctionalSardineTest
             }
         });
         Sardine sardine = new SardineImpl(builder);
-        sardine.enableCompression();
         final String url = webDavTestContainer.getTestFolderUrl() + "test.txt";
         final InputStream in = sardine.get(url);
         assertNotNull(in);
@@ -113,10 +112,9 @@ public class FunctionalSardineTest
     @Test
     public void testReadCloseFullyConsumed() throws Exception
     {
-        final HttpClientBuilder builder = HttpClientBuilder.create();
+        final HttpClientBuilder builder = HttpClientBuilder.create().disableContentCompression();
         Sardine sardine = new SardineImpl(builder);
         // Make sure the response is not compressed
-        sardine.disableCompression();
         final String url = webDavTestContainer.getRandomTestFileUrl();
         try {
             final byte[] content = "sa".getBytes(StandardCharsets.UTF_8);
