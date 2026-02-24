@@ -3,7 +3,7 @@
     <groupId>com.github.lookfirst</groupId>
     <artifactId>sardine</artifactId>
     <packaging>jar</packaging>
-    <version>5.14-FOC2-SNAPSHOT</version>
+    <version>5.14-SNAPSHOT</version>
     <description>An easy to use WebDAV client for Java</description>
     <name>Sardine WebDAV client</name>
     <url>https://github.com/lookfirst/sardine</url>
@@ -14,9 +14,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git@github.com:FOCONIS/sardine.git</connection>
-        <developerConnection>scm:git:git@github.com:FOCONIS/sardine.git</developerConnection>
-        <url>git@github.com:FOCONIS/sardine.git</url>
+        <connection>scm:git:git@github.com:lookfirst/sardine.git</connection>
+        <developerConnection>scm:git:git@github.com:lookfirst/sardine.git</developerConnection>
+        <url>git@github.com:lookfirst/sardine.git</url>
       <tag>sardine-5.13</tag>
   </scm>
     <developers>
@@ -34,14 +34,14 @@
     </developers>
     <distributionManagement>
         <repository>
-            <id>foconis-release</id>
-            <name>FOCONIS Release Repository</name>
-            <url>https://mvnrepo.foconis.de/repository/release/</url>
+            <id>sonatype-release</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
         <snapshotRepository>
-            <id>foconis-snapshot</id>
-            <name>FOCONIS Snapshot Repository</name>
-            <url>https://mvnrepo.foconis.de/repository/snapshot/</url>
+            <id>sonatype-snapshot</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
     <build>
